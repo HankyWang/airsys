@@ -1,0 +1,14 @@
+基本协议：
+request,room,wind,temp             C-S     （发送房间号，风速（0~100），当前温度）
+sev_allow 或 wait                          S-C    （接收请求或等待请求）
+
+update,room,wind,settemp,temp           C-S      （发送房间号，风速（0~100），设置温度，当前温度）
+running                                                   S-C
+
+synchro,room                               C-S      （发送房间号，两秒一次更新同步）
+stemp,temp,ener,money,dead               S-C        （发送温度，能耗（单位为度），钱，该信号为1强行关机）
+
+end,room                                      C-S        (发送房间号）
+end_allow                                      S-C        （允许结束）
+
+
