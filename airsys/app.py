@@ -3,6 +3,7 @@ from django.http import HttpRequest
 import subprocess
 import os,sys
 import socket
+import queue
 
 def stats():
     ctx = {}
@@ -21,9 +22,24 @@ HOST = get_ip()
 PORT = 8880
 BUF_SIZE = 1024
 
+def resolve(msg):
+    item = msg.split(',')
+    if item[0] == 'request':
+        pass
+    elif item[0] == 'update':
+        pass
+    elif item[0] == 'synchro':
+        pass
+    elif item[0] == 'end':
+        pass
+    else:
+        pass
+
+
 def handle_request(conn):
     msg = conn.recv(BUF_SIZE)
-    conn.send(msg)         #to client
+    # conn.send(msg)         #to client
+
 
 def server(client):
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
