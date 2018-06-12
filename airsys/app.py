@@ -5,6 +5,29 @@ import os,sys
 import socket
 import queue
 
+class Handler(object):
+    inbuf = queue.Queue()
+    tcp_port = 8880
+    def process(self):
+        with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
+            s.settimeout(1)
+            s.bind('',self.tcp_port)
+            try:
+                data, addr = s.recvfrom(1024)
+                msg = data.split(',')
+                if msg[0] == 'request':
+                    pass
+                elif msg[0] == 'update':
+                    pass
+                elif msg[0] == 'sychro':
+                    pass
+                elif msg[0] == 'end':
+                    pass
+            except:
+                print('No data coming')
+
+
+
 def stats():
     ctx = {}
     # ctx[]
@@ -22,32 +45,28 @@ HOST = get_ip()
 PORT = 8880
 BUF_SIZE = 1024
 
-def resolve(msg):
-    item = msg.split(',')
-    if item[0] == 'request':
-        pass
-    elif item[0] == 'update':
-        pass
-    elif item[0] == 'synchro':
-        pass
-    elif item[0] == 'end':
-        pass
-    else:
-        pass
 
 
 def handle_request(conn):
-    msg = conn.recv(BUF_SIZE)
+    data = conn.recv(BUF_SIZE)
     # conn.send(msg)         #to client
+    msg = data.split(',')
+    if msg[0] == 'request':
+        pass
+    elif msg[0] == 'update':
+        pass
+    elif msg[0] == 'sychro':
+        pass
+    elif msg[0] == 'end':
+        pass
 
 
 def server(client):
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.bind((HOST,PORT))
+    sock.bind(('',PORT))
     sock.listen(5)
 
     while True:
         connection, address = sock.accept()
         handle_request(connection)
-
 
