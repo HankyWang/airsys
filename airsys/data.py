@@ -143,7 +143,7 @@ class Inst:
         self.speed = speed
 
 
-rooms = [Room(id) for id in ROOM_IDS]
+rooms = [Item(Room(id)) for id in ROOM_IDS]
 inst_queue = Item(queue.LifoQueue())
 logs = [Item([]) for id in ROOM_IDS]
 
