@@ -35,6 +35,8 @@ class Room:
     MEDIUM = 1
     HIGH = 2
 
+    MAX_TIMER = 20
+
 
     def __init__(
             self,
@@ -46,7 +48,8 @@ class Room:
             targ_temp=dflt_temp,  # = float .00
             speed=1,  # = 0, 1, 2
             fee=.00,  # = float .00
-            srv_time=.00  # float .00 /s
+            srv_time=.00,  # float .00 /s
+            timer = 20
     ):
         self.id = id
         self.is_checked_in = is_checked_in
@@ -58,6 +61,7 @@ class Room:
         self.fee_of_a_log = 0.
         self.fee = fee
         self.srv_time = srv_time
+        self.timer = timer
 
     def set_status(self, new_status):
         if self.status != Room.RUNNING and new_status == Room.RUNNING:
@@ -78,7 +82,7 @@ class Room:
         self.cur_temp = temp
 
     def synchro(self):
-        return ','.join(str(self.cur_temp),str(self.fee*self.DEG_PER_FEE),str(self.fee),str(self.status))
+        return ','.join([str(self.cur_temp),str(self.fee*self.DEG_PER_FEE),str(self.fee),str(self.status)])
 
     # def connect(self, curr_temp):
     #     self.is_connected = True
@@ -114,6 +118,10 @@ class Room:
         self.fee_of_a_log += delta_fee
         self.srv_time += TIME_SLOT
 
+    def tick(self):
+        self.timer -= TIME_SLOT
+        return self.timer==0
+
     def is_targ_temp_reached(self):
         return math.fabs(self.cur_temp - self.targ_temp) < TEMP_EPS
 
@@ -135,7 +143,7 @@ class Inst:
         self.speed = speed
 
 
-rooms = [Item(Room(id)) for id in ROOM_IDS]
+rooms = [Room(id) for id in ROOM_IDS]
 inst_queue = Item(queue.LifoQueue())
 logs = [Item([]) for id in ROOM_IDS]
 

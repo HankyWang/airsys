@@ -7,12 +7,14 @@ import queue
 
 class Handler(object):
     inbuf = queue.Queue()
-    tcp_port = 8880
-    def process(self):
+    def __init__(self,RoomID,port):
+        self.RoomID = RoomID
+        self.port = port
+    def listen(self):
         with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
             s.settimeout(1)
             s.bind('',self.tcp_port)
-            try:
+            while True:
                 data, addr = s.recvfrom(1024)
                 msg = data.split(',')
                 if msg[0] == 'request':
@@ -23,9 +25,6 @@ class Handler(object):
                     pass
                 elif msg[0] == 'end':
                     pass
-            except:
-                print('No data coming')
-
 
 
 def stats():
