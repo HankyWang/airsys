@@ -111,8 +111,8 @@ def timeup(roomid):
     data.rooms[roomid].lock.release()
 
 def upwind(roomid):
-    assert(data.rooms[roomid].speed>data.Room.MEDIUM)
-    assert(data.rooms[roomid].status == data.Room.SUSPENDED)
+    assert(data.rooms[roomid].val.speed>data.Room.MEDIUM)
+    assert(data.rooms[roomid].val.status == data.Room.SUSPENDED)
     serv_queue = queue.PriorityQueue()
     for id, room in data.rooms.items():
         if room.val.status == data.Room.RUNNING:

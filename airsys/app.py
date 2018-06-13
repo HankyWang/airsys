@@ -22,9 +22,9 @@ class Handler(object):
         self.RoomID = RoomID
         self.port = port
     def listen(self):
-        with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
-            s.settimeout(1)
-            s.bind('',self.port)
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            s.bind(('',self.port))
+            s.listen(1)
             con, addr = s.accept()
             while True:
                 msg = s.recv(BUF_SIZE)
@@ -67,7 +67,8 @@ class Handler(object):
 
 servers = [Handler(data.ROOM_IDS[i],data.ROOM_PORT[i]) for i in range(len(data.ROOM_IDS))]
 
-
+if __name__ == '__main__':
+    servers[0].listen()
 
 
 
