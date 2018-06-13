@@ -123,9 +123,11 @@ class Room:
 
     def tick(self):
         self.timer -= TIME_SLOT
+
+    def is_timeup(self):
         return self.timer==0
 
-    def is_targ_temp_reached(self):
+    def is_reached(self):
         return math.fabs(self.cur_temp - self.targ_temp) < TEMP_EPS
 
 

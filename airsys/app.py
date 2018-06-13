@@ -1,8 +1,8 @@
 import queue
 import socket
 import subprocess
-
-from utils import dispatcher, data
+import threading
+from utils import dispatcher, data, simulate
 
 def get_ip():
     return subprocess.check_output(
@@ -18,8 +18,8 @@ HOST = get_ip()
 BUF_SIZE = 1024
 
 class Handler(object):
-    def __init__(self,RoomID,port):
-        self.RoomID = RoomID
+    def __init__(self,roomid,port):
+        self.roomid = roomid
         self.port = port
     def listen(self):
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
@@ -69,7 +69,11 @@ class Handler(object):
 servers = [Handler(data.ROOM_IDS[i],data.ROOM_PORT[i]) for i in range(len(data.ROOM_IDS))]
 
 if __name__ == '__main__':
-    servers[0].listen()
+
+    print(get_ip())
+    servers_th_pool = [threading.Thread(target=server.listen,args=(),name='server '+server.roomid).start() for server in servers]
+
+    simulate_th = threading.Thread(target=simulate.simulate(), args=(), name='update').start()
 
 
 
