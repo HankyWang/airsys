@@ -12,6 +12,10 @@ def index(request):
 def login(request):
     ctx = {}
 
+def client(request):
+    ctx = request.POST
+    ctx['wind']
+    client.Handler.request(room,wind,temp)
 def hotel_manager(request):
     pass
 

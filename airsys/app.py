@@ -26,6 +26,7 @@ class Handler(object):
             s.bind(('',self.port))
             s.listen(1)
             con, addr = s.accept()
+            print('[LOG]recieve connection from',addr)
             while True:
                 msg = s.recv(BUF_SIZE)
                 msg = msg.split(',')
