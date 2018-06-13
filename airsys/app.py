@@ -30,6 +30,7 @@ class Handler(object):
                         data.rooms[roomid].val.speed = wind
                         data.rooms[roomid].val.check_in()
                         data.rooms[roomid].lock.release()
+
                 elif msg[0] == 'update':
                     pass
                 elif msg[0] == 'sychro':
