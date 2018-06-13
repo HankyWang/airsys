@@ -1,4 +1,4 @@
-from . import data
+from utils import data
 import queue
 
 MAX_SIZE=6
@@ -49,7 +49,7 @@ def add(roomid):
     serv_queue = queue.PriorityQueue()
     for id, room in data.rooms.items():
         if room.val.status == data.Room.RUNNING:
-            serv_queue.put((-room.val.src_time,room.val.speed, id))
+            serv_queue.put((-room.val.srv_time,room.val.speed, id))
     if serv_queue.qsize() < MAX_SIZE:
         data.rooms[roomid].lock.acquire()
         data.rooms[roomid].val.set_status((data.Room.RUNNING))
@@ -98,7 +98,7 @@ def timeup(roomid):
     serv_queue = queue.PriorityQueue()
     for id, room in data.rooms.items():
         if room.val.status == data.Room.RUNNING:
-            serv_queue.put((-room.val.src_time,room.val.speed, id))
+            serv_queue.put((-room.val.srv_time,room.val.speed, id))
     pop_id = serv_queue.get()[-1]
     data.rooms[pop_id].lock.acquire()
     data.rooms[pop_id].val.set_status(data.Room.SUSPENDED)
@@ -116,7 +116,7 @@ def upwind(roomid):
     serv_queue = queue.PriorityQueue()
     for id, room in data.rooms.items():
         if room.val.status == data.Room.RUNNING:
-            serv_queue.put((-room.val.src_time,room.val.speed, id))
+            serv_queue.put((-room.val.srv_time,room.val.speed, id))
 
     pop_id = serv_queue.get()[-1]
     data.rooms[pop_id].lock.acquire()

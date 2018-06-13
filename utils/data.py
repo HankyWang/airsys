@@ -1,5 +1,4 @@
 import threading
-import queue
 import math
 import time
 
@@ -28,7 +27,7 @@ class Room:
     END = 3
     SUSPENDED = 4
 
-    DEG_PER_FEE = 2
+    DEG_PER_FEE = 1.75
 
     # speed
     LOW = 0
@@ -49,7 +48,8 @@ class Room:
             speed=1,  # = 0, 1, 2
             fee=.00,  # = float .00
             srv_time=.00,  # float .00 /s
-            timer = 20
+            timer = 20,
+            ener = .00
     ):
         self.id = id
         self.is_checked_in = is_checked_in
@@ -62,6 +62,7 @@ class Room:
         self.fee = fee
         self.srv_time = srv_time
         self.timer = timer
+        self.ener = ener
 
     def set_status(self, new_status):
         if self.status != Room.RUNNING and new_status == Room.RUNNING:
@@ -77,12 +78,12 @@ class Room:
         self.is_checked_in = True
         self.fee = 0.
 
-    def request(self,wind,temp):
-        self.speed = wind // 34
-        self.cur_temp = temp
+    # def request(self,wind,temp):
+    #     self.speed = wind //
+    #     self.cur_temp = temp
 
     def synchro(self):
-        return ','.join([str(self.cur_temp),str(self.fee*self.DEG_PER_FEE),str(self.fee),str(self.status)])
+        return ','.join(['stemp',str(self.cur_temp),str(self.fee*self.DEG_PER_FEE),str(self.fee),str(self.status)])
 
     # def connect(self, curr_temp):
     #     self.is_connected = True
@@ -101,6 +102,7 @@ class Room:
     def check_out(self):
         self.is_checked_in = False
 
+
     @staticmethod
     def calc_delta_temp_and_fee(speed):
         if speed == Room.LOW:
@@ -117,6 +119,7 @@ class Room:
         self.fee += delta_fee
         self.fee_of_a_log += delta_fee
         self.srv_time += TIME_SLOT
+        self.ener = self.fee * self.DEG_PER_FEE
 
     def tick(self):
         self.timer -= TIME_SLOT
@@ -143,8 +146,11 @@ class Inst:
         self.speed = speed
 
 
-rooms = [Item(Room(id)) for id in ROOM_IDS]
-inst_queue = Item(queue.LifoQueue())
-logs = [Item([]) for id in ROOM_IDS]
+rooms = {}
+for room_id in ROOM_IDS:
+    rooms[room_id]=Item(Room(room_id))
 
+logs = {}
+for room_id in ROOM_IDS:
+    logs[room_id] = Item([])
 
