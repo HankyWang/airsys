@@ -4,6 +4,8 @@ import subprocess
 import os,sys
 import socket
 import queue
+from . import dispatcher
+from . import data
 
 class Handler(object):
     inbuf = queue.Queue()
@@ -15,10 +17,19 @@ class Handler(object):
             s.settimeout(1)
             s.bind('',self.tcp_port)
             while True:
-                data, addr = s.recvfrom(1024)
-                msg = data.split(',')
+                msg, addr = s.recvfrom(1024)
+                msg = msg.split(',')
                 if msg[0] == 'request':
-                    pass
+                    roomid = msg[1]
+                    wind = msg[2]
+                    temp = msg[3]
+                    dispatcher.add(roomid)
+                    if data.rooms[roomid].val.status == data.Room.RUNNING:
+                        data.rooms[roomid].lock.acquire()
+                        data.rooms[roomid].val.targ_temp = temp
+                        data.rooms[roomid].val.speed = wind
+                        data.rooms[roomid].val.check_in()
+                        data.rooms[roomid].lock.release()
                 elif msg[0] == 'update':
                     pass
                 elif msg[0] == 'sychro':
@@ -26,10 +37,6 @@ class Handler(object):
                 elif msg[0] == 'end':
                     pass
 
-
-def stats():
-    ctx = {}
-    # ctx[]
 
 def get_ip():
     return subprocess.check_output(
