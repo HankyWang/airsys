@@ -11,8 +11,10 @@ TIME_SLOT = 2
 
 TEMP_EPS = 1e-2
 
+# TODO:fecth data from file
 
-
+def fetch_data():
+    pass
 
 class Item:
     def __init__(self, val):

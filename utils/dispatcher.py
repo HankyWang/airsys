@@ -116,6 +116,3 @@ def reached(roomid):
         data.rooms[pend_id].val.srv_time = 0
         data.rooms[pend_id].lock.release()
 
-
-
-# TODO: + end(roomid) + timeup(roomid) + upwind(roomid)

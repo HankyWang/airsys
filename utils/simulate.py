@@ -2,9 +2,19 @@ import time
 from utils import data,dispatcher
 
 stats=['','RUNNING','IDLE','END','SUSPENDED']
+windspeed=['LOW','MEDIUM','HIGH']
 
 def print_status():
     print(' '.join([stats[room.val.status] for room in data.rooms.values()]))
+
+def print_cur_temp():
+    print(' '.join([str(room.val.cur_temp) for room in data.rooms.values()]))
+
+def print_targ_temp():
+    print(' '.join([str(room.val.targ_temp) for room in data.rooms.values()]))
+
+def print_wind():
+    print(' '.join([windspeed[room.val.speed] for room in data.rooms.values()]))
 
 def simulate():
     while True:
@@ -22,4 +32,7 @@ def simulate():
                 dispatcher.timeup(roomid)
 
             print_status()
+            print_cur_temp()
+            print_targ_temp()
+            print_wind()
             time.sleep(data.TIME_SLOT)

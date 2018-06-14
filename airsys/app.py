@@ -28,22 +28,26 @@ class Handler(object):
             con, addr = s.accept()
             print('[LOG]recieve connection from',addr)
             while True:
-                msg = s.recv(BUF_SIZE)
+                msg = con.recv(BUF_SIZE)
+                msg = msg.decode()
                 msg = msg.split(',')
                 if msg[0] == 'request':
                     roomid = msg[1]
-                    wind = msg[2] // 40
-                    cur_temp = msg[3]
+                    wind = int(msg[2]) // 40
+                    cur_temp = float(msg[3])
+                    print('[LOG]REQUEST', roomid, wind, cur_temp)
                     dispatcher.add(roomid)
                     if data.rooms[roomid].val.status == data.Room.RUNNING:
                         data.rooms[roomid].lock.acquire()
                         data.rooms[roomid].val.cur_temp = cur_temp
                         data.rooms[roomid].val.speed = wind
                         data.rooms[roomid].lock.release()
-                        con.send('sev_allow')
+                        con.send('sev_allow'.encode())
+                        print('[LOG]SERVICE START')
                     else:
                         assert(data.rooms[roomid].val.status == data.Room.SUSPENDED)
-                        con.send('wait')
+                        con.send('wait'.encode())
+                        print('[LOG]SERVICE OVERLOAD. PENDING...')
                 elif msg[0] == 'update':
                     roomid = msg[1]
                     wind = msg[2] // 40
@@ -57,20 +61,23 @@ class Handler(object):
                     data.rooms[roomid].val.speed = wind
                     data.rooms[roomid].val.targ_temp = targ_temp
                     data.rooms[roomid].lock.release()
-                    con.send('wait')
+                    con.send('running'.encode())
+                    print('[LOG]UPDATE',roomid,'TARGET TEMP:',targ_temp,'WINDSPEED', ('LOW','MEDIUM','HIGH')[wind])
                 elif msg[0] == 'sychro':
                     roomid = msg[1]
-                    con.send(data.rooms[roomid].val.synchro())
+                    con.send(data.rooms[roomid].val.synchro().encode())
+                    print('[LOG]SYNCHRO COMPLETE')
                 elif msg[0] == 'end':
                     roomid = msg[1]
                     dispatcher.end(roomid)
-                    con.send('end_allow')
+                    con.send('end_allow'.encode())
+                    print('[LOG]SERVICE END')
 
 servers = [Handler(data.ROOM_IDS[i],data.ROOM_PORT[i]) for i in range(len(data.ROOM_IDS))]
 
 if __name__ == '__main__':
 
-    print(get_ip())
+    print(get_ip().decode())
     servers_th_pool = [threading.Thread(target=server.listen,args=(),name='server '+server.roomid).start() for server in servers]
 
     simulate_th = threading.Thread(target=simulate.simulate(), args=(), name='update').start()
