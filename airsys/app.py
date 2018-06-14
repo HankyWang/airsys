@@ -50,9 +50,9 @@ class Handler(object):
                         print('[LOG]SERVICE OVERLOAD. PENDING...')
                 elif msg[0] == 'update':
                     roomid = msg[1]
-                    wind = msg[2] // 40
-                    targ_temp = msg[3]
-                    cur_temp = msg[4]
+                    wind = int(msg[2] // 40)
+                    targ_temp = float(msg[3])
+                    cur_temp = float(msg[4])
                     if wind > data.Room.MEDIUM and data.rooms[roomid].val.status == data.Room.SUSPENDED:
                         dispatcher.upwind()
                         assert(data.rooms[roomid].val.status==data.Room.RUNNING)
@@ -63,7 +63,7 @@ class Handler(object):
                     data.rooms[roomid].lock.release()
                     con.send('running'.encode())
                     print('[LOG]UPDATE',roomid,'TARGET TEMP:',targ_temp,'WINDSPEED', ('LOW','MEDIUM','HIGH')[wind])
-                elif msg[0] == 'sychro':
+                elif msg[0] == 'synchro':
                     roomid = msg[1]
                     con.send(data.rooms[roomid].val.synchro().encode())
                     print('[LOG]SYNCHRO COMPLETE')

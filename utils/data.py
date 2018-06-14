@@ -4,9 +4,10 @@ import time
 
 ROOM_PORT = [50501,50502,50503,50504,50505,50506,50507,50508]
 ROOM_IDS = ['501','502','503','504','505','506','507','508']
-max_temp = 30
-min_temp = 18
-dflt_temp = 22
+max_temp = 30.0
+min_temp = 18.0
+dflt_cur_temp = 28.0
+dflt_temp = 22.0
 TIME_SLOT = 2
 
 TEMP_EPS = 1e-2
@@ -45,7 +46,7 @@ class Room:
             is_checked_in=True,
             is_connected=False,  # = True, False
             # status=,  # IDLE, RUNNING, SUSPENDED, END
-            cur_temp=-1,  # = float .00
+            cur_temp=dflt_cur_temp,  # = float .00
             targ_temp=dflt_temp,  # = float .00
             speed=1,  # = 0, 1, 2
             fee=.00,  # = float .00

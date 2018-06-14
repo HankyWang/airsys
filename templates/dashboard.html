@@ -1,24 +1,30 @@
+{% load staticfiles %}
 <!doctype html>
+
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+      <link rel="icon" href="../static/favicon.ico">
 
     <title>Distributed Air Conditioning System</title>
-
+    <link rel="icon" href="static/favicon.png">
     <!-- Bootstrap core CSS -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
-    <link href="../css/dashboard.css" rel="stylesheet">
+    <link href="../static/css/dashboard.css" rel="stylesheet">
   </head>
 
   <body>
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Air System</a>
-      <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Distributed Air Conditioning System</a>
+
+      <!-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> -->
+
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
           <a class="nav-link" href="#">  </a>
@@ -34,44 +40,26 @@
               <li class="nav-item">
                 <a class="nav-link active" href="#">
                   <span data-feather="home"></span>
-                  Dashboard
+                  首页
                     <span class="sr-only">(current)</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">
-                  <span data-feather="file"></span>
-                  Orders
+                  <span data-feather="bar-chart-2"></span>
+                  详单
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">
                   <span data-feather="shopping-cart"></span>
-                  Products
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="users"></span>
-                  Customers
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="bar-chart-2"></span>
-                  Reports
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="layers"></span>
-                  Integrations
+                  账单
                 </a>
               </li>
             </ul>
 
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-              <span>Saved reports</span>
+              <span>生成详单</span>
               <a class="d-flex align-items-center text-muted" href="#">
 
               </a>
@@ -80,25 +68,87 @@
               <li class="nav-item">
                 <a class="nav-link" href="#">
                   <span data-feather="file-text"></span>
-                  Current month
+                  当日详单
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">
                   <span data-feather="file-text"></span>
-                  Last quarter
+                  当月详单
+                </a>
+              </li>
+            </ul>
+
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+              <span>生成账单</span>
+              <a class="d-flex align-items-center text-muted" href="#">
+
+              </a>
+            </h6>
+
+            <ul class="nav flex-column mb-2">
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="archive"></span>
+                  账单
+                </a>
+              </li>
+            </ul>
+
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+              <span>房间监控</span>
+              <a class="d-flex align-items-center text-muted" href="#">
+
+              </a>
+            </h6>
+
+            <ul class="nav flex-column mb-2">
+              <li class="nav-item">
+                <a class="nav-link" href="room?id=501">
+                  <span data-feather="home"></span>
+                  501
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Social engagement
+                <a class="nav-link" href="room?id=502">
+                  <span data-feather="home"></span>
+                  502
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Year-end sale
+                <li class="nav-item">
+                <a class="nav-link" href="room?id=503">
+                  <span data-feather="home"></span>
+                  503
+                </a>
+              </li>
+                <li class="nav-item">
+                <a class="nav-link" href="room?id=504">
+                  <span data-feather="home"></span>
+                  504
+                </a>
+              </li>
+                <li class="nav-item">
+                <a class="nav-link" href="room?id=505">
+                  <span data-feather="home"></span>
+                  505
+                </a>
+              </li>
+            <li class="nav-item">
+            <a class="nav-link" href="room?id=506">
+              <span data-feather="home"></span>
+              506
+            </a>
+          </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="room?id=507">
+                    <span data-feather="home"></span>
+                      507
+                     </a>
+                 </li>
+                <li class="nav-item">
+                <a class="nav-link" href="room?id=508">
+                  <span data-feather="home"></span>
+                  508
                 </a>
               </li>
             </ul>
@@ -107,7 +157,7 @@
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Dashboard</h1>
+              <h1 class="h2"><i class="fas fa-tachometer-alt"></i> 总览</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
               <div class="btn-group mr-2">
                 <button class="btn btn-sm btn-outline-secondary">Share</button>
@@ -120,132 +170,104 @@
             </div>
           </div>
 
+            <div calss="d-flex flex-wrap align-items-center pt-3 pb-2 mb-3"><h3><i class="far fa-chart-bar"></i> 各房间使用费用及能耗</h3></div>
           <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
 
-          <h2>Section title</h2>
+          <h3><i class="fas fa-calendar-alt"></i> 各房间运行概况</h3>
           <div class="table-responsive">
             <table class="table table-striped table-sm">
               <thead>
                 <tr>
-                  <th>#</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th>
+                  <th>房间ID</th>
+                  <th>当前温度</th>
+                  <th>设定温度</th>
+                  <th>运行状态</th>
+                  <th>当前费用</th>
+                  <th>当前能耗</th>
+                  <th>服务时间</th>
+                  <th>等待时间</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>1,001</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
-                  <td>dolor</td>
-                  <td>sit</td>
+                  <th>501</th>
+                  <th>{{ cur_temp_501 }}</th>
+                  <th>{{ targ_temp_501 }}</th>
+                  <th>{{ status_501 }}</th>
+                  <th>{{ fee_501 }}</th>
+                  <th>{{ ener_501 }}</th>
+                  <th>{{ srv_time_501 }}</th>
+                  <th>{{ wait_time_501 }}</th>
                 </tr>
                 <tr>
-                  <td>1,002</td>
-                  <td>amet</td>
-                  <td>consectetur</td>
-                  <td>adipiscing</td>
-                  <td>elit</td>
+                  <th>502</th>
+                  <th>{{ cur_temp_502 }}</th>
+                  <th>{{ targ_temp_502 }}</th>
+                  <th>{{ status_502 }}</th>
+                  <th>{{ fee_502 }}</th>
+                  <th>{{ ener_502 }}</th>
+                  <th>{{ srv_time_502 }}</th>
+                  <th>{{ wait_time_502 }}</th>
                 </tr>
                 <tr>
-                  <td>1,003</td>
-                  <td>Integer</td>
-                  <td>nec</td>
-                  <td>odio</td>
-                  <td>Praesent</td>
+                  <th>503</th>
+                  <th>{{ cur_temp_503 }}</th>
+                  <th>{{ targ_temp_503 }}</th>
+                  <th>{{ status_503 }}</th>
+                  <th>{{ fee_503 }}</th>
+                  <th>{{ ener_503 }}</th>
+                  <th>{{ srv_time_503 }}</th>
+                  <th>{{ wait_time_503 }}</th>
                 </tr>
                 <tr>
-                  <td>1,003</td>
-                  <td>libero</td>
-                  <td>Sed</td>
-                  <td>cursus</td>
-                  <td>ante</td>
+                  <th>504</th>
+                  <th>{{ cur_temp_504 }}</th>
+                  <th>{{ targ_temp_504 }}</th>
+                  <th>{{ status_504 }}</th>
+                  <th>{{ fee_504 }}</th>
+                  <th>{{ ener_504 }}</th>
+                  <th>{{ srv_time_504 }}</th>
+                  <th>{{ wait_time_504 }}</th>
                 </tr>
                 <tr>
-                  <td>1,004</td>
-                  <td>dapibus</td>
-                  <td>diam</td>
-                  <td>Sed</td>
-                  <td>nisi</td>
+                  <th>505</th>
+                  <th>{{ cur_temp_505 }}</th>
+                  <th>{{ targ_temp_505 }}</th>
+                  <th>{{ status_505 }}</th>
+                  <th>{{ fee_505 }}</th>
+                  <th>{{ ener_505 }}</th>
+                  <th>{{ srv_time_505 }}</th>
+                  <th>{{ wait_time_505 }}</th>
                 </tr>
                 <tr>
-                  <td>1,005</td>
-                  <td>Nulla</td>
-                  <td>quis</td>
-                  <td>sem</td>
-                  <td>at</td>
+                  <th>506</th>
+                  <th>{{ cur_temp_506 }}</th>
+                  <th>{{ targ_temp_506 }}</th>
+                  <th>{{ status_506 }}</th>
+                  <th>{{ fee_506 }}</th>
+                  <th>{{ ener_506 }}</th>
+                  <th>{{ srv_time_506 }}</th>
+                  <th>{{ wait_time_506 }}</th>
                 </tr>
                 <tr>
-                  <td>1,006</td>
-                  <td>nibh</td>
-                  <td>elementum</td>
-                  <td>imperdiet</td>
-                  <td>Duis</td>
+                  <th>507</th>
+                  <th>{{ cur_temp_507 }}</th>
+                  <th>{{ targ_temp_507 }}</th>
+                  <th>{{ status_507 }}</th>
+                  <th>{{ fee_507 }}</th>
+                  <th>{{ ener_507 }}</th>
+                  <th>{{ srv_time_507 }}</th>
+                  <th>{{ wait_time_507 }}</th>
                 </tr>
                 <tr>
-                  <td>1,007</td>
-                  <td>sagittis</td>
-                  <td>ipsum</td>
-                  <td>Praesent</td>
-                  <td>mauris</td>
-                </tr>
-                <tr>
-                  <td>1,008</td>
-                  <td>Fusce</td>
-                  <td>nec</td>
-                  <td>tellus</td>
-                  <td>sed</td>
-                </tr>
-                <tr>
-                  <td>1,009</td>
-                  <td>augue</td>
-                  <td>semper</td>
-                  <td>porta</td>
-                  <td>Mauris</td>
-                </tr>
-                <tr>
-                  <td>1,010</td>
-                  <td>massa</td>
-                  <td>Vestibulum</td>
-                  <td>lacinia</td>
-                  <td>arcu</td>
-                </tr>
-                <tr>
-                  <td>1,011</td>
-                  <td>eget</td>
-                  <td>nulla</td>
-                  <td>Class</td>
-                  <td>aptent</td>
-                </tr>
-                <tr>
-                  <td>1,012</td>
-                  <td>taciti</td>
-                  <td>sociosqu</td>
-                  <td>ad</td>
-                  <td>litora</td>
-                </tr>
-                <tr>
-                  <td>1,013</td>
-                  <td>torquent</td>
-                  <td>per</td>
-                  <td>conubia</td>
-                  <td>nostra</td>
-                </tr>
-                <tr>
-                  <td>1,014</td>
-                  <td>per</td>
-                  <td>inceptos</td>
-                  <td>himenaeos</td>
-                  <td>Curabitur</td>
-                </tr>
-                <tr>
-                  <td>1,015</td>
-                  <td>sodales</td>
-                  <td>ligula</td>
-                  <td>in</td>
-                  <td>libero</td>
+                  <th>508</th>
+                  <th>{{ cur_temp_508 }}</th>
+                  <th>{{ targ_temp_508 }}</th>
+                  <th>{{ status_508 }}</th>
+                  <th>{{ fee_508 }}</th>
+                  <th>{{ ener_508 }}</th>
+                  <th>{{ srv_time_508 }}</th>
+                  <th>{{ wait_time_508 }}</th>
                 </tr>
               </tbody>
             </table>
@@ -257,39 +279,47 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../js/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="{% static "js/jquery-3.3.1.slim.min.js" %}" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="../js/popper.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
+    <script src="{% static "js/popper.min.js" %}"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
 
     <!-- Icons -->
-    <script src="../js/feather.min.js"></script>
+    <script src="{% static "js/feather.min.js" %}"></script>
     <script>
       feather.replace()
     </script>
 
     <!-- Graphs -->
-    <script src="../js/Chart.min.js"></script>
+    <script src="{% static "js/Chart.min.js" %}"></script>
     <script>
       var ctx = document.getElementById("myChart");
       var myChart = new Chart(ctx, {
-        type: 'line',
+        type: 'bar',
         data: {
-          labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          labels: ["Room:501", "Room:502", "Room:503", "Room:504", "Room:505", "Room:506", "Room:507","Room:508"],
           datasets: [{
-            data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
+            data: [{{ fee_501 }},{{ fee_502 }}, {{ fee_503 }}, {{ fee_504 }}, {{ fee_505 }}, {{ fee_506 }}, {{ fee_507 }}, {{ fee_508 }}],
             lineTension: 0,
-            backgroundColor: 'transparent',
+            backgroundColor: '#007bff',
             borderColor: '#007bff',
             borderWidth: 4,
             pointBackgroundColor: '#007bff'
-          }]
+          }, {
+            data: [{{ ener_501 }},{{ ener_502 }}, {{ ener_503 }}, {{ ener_504 }}, {{ ener_505 }}, {{ ener_506 }}, {{ ener_507 }}, {{ ener_508 }},],
+            lineTension: 0,
+            backgroundColor: '#ff3c3c',
+            borderColor: '#ff3c3c',
+            borderWidth: 4,
+            pointBackgroundColor: '#ff3c3c'
+          }
+          ]
         },
         options: {
           scales: {
             yAxes: [{
               ticks: {
-                beginAtZero: false
+                beginAtZero: true
               }
             }]
           },
